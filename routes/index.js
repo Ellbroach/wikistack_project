@@ -1,10 +1,13 @@
 const express = require('express');
-const bodyParser = require('body-parser');
 const router = express.Router();
+const wikiRouter = require('./wiki.js')
+const userRouter = require('./user.js')
 
-router.get("/", (req, res, next) => {
-  res.render('index');
+router.use('/wiki', wikiRouter);
+router.use('/users', userRouter);
+
+router.use('/', function(req, res, next) {
+  res.send('Main page');
 })
 
-
-module.exports = router
+module.exports = router;
